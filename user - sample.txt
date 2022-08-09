@@ -1,0 +1,32 @@
+#Note that there is a space after the colon of each parameter name. Do not lose the space when modifying the parameters.
+
+# Wax node address, using public nodes, sometimes the network is blocked, or access is restricted too frequently, 429 errors occur, you can change nodes, or build private nodes
+# List of public nodes:https://wax.eosio.online/endpoints
+
+rpc_domain: https://wax.greymass.com
+
+# cpu payment number, cpu_key fill in the private key of the payment number, leave it blank if no payment is required
+cpu_account: 
+cpu_key: 
+
+# Even if the mining time is up, delay the mining for 30-90 seconds
+delay1: 30
+delay2: 90
+
+# http proxy (eg 127.0.0.1:10808)
+# Set an HTTP proxy for the script, which can solve the problem of restricted access to public nodes to a certain extent, leave it blank if it is not needed
+proxy:
+proxy_username:
+proxy_password:
+
+# Change the following three items to your account information
+# account is the account name of the wax cloud wallet
+# What is the token, first log in to the WAX cloud wallet manually in the chrome browser  https://wallet.wax.io/dashboard
+# Then enter the address in the chrome browser to navigate to： https://all-access.wax.io/api/session
+# Copy the token and fill it below
+# charge_time is the mining interval, in seconds, log in to the official website of alienworlds, open the tool page, you can see it, fill in according to the actual situation
+# https://play.alienworlds.io/mining
+
+account: 
+token: 
+charge_time: 9300

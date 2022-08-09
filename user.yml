@@ -1,0 +1,11 @@
+rpc_domain: https://api.wax.alohaeos.com
+cpu_account: xxxxxxxxxxxx
+cpu_key: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+delay1: 30
+delay2: 90
+proxy:
+proxy_username:
+proxy_password:
+account: xxxxx.wam
+token: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+charge_time: xxx
