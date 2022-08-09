@@ -5,3 +5,4 @@ __pycache__
 /pack.bat
 /logs
 /_*.bat
+/user.yml
