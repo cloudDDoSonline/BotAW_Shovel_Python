@@ -99,4 +99,5 @@ Setting a proxy IP for every N number, or setting up WAX private nodes by yourse
 ### Donate
 
 Wax wallet address of encoderlee: m45yy.wam
+
 Wax wallet address of thiencntt: focvu.wam
