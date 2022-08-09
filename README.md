@@ -26,11 +26,7 @@ This script can run multiple account in one computer
 
 # Usage
 
-1. To run from source code, install the Python environment first. It is recommended to install Python 3.9.13 version, because this is the version we have tested
-
-download link：[https://www.python.org/ftp/python/3.9.13/python-3.9.13-amd64.exe](https://www.python.org/ftp/python/3.9.13/python-3.9.13-amd64.exe)
-
-Remember to check when installing “Add Python 3.9 to PATH”
+1. To run from source code, install the Python environment first. It is recommended to install Python 3.9.13 version, because this is the version we have tested. Download link：[https://www.python.org/ftp/python/3.9.13/python-3.9.13-amd64.exe](https://www.python.org/ftp/python/3.9.13/python-3.9.13-amd64.exe) **Remember to check when installing “Add Python 3.9 to PATH”**
 
 2. Download the source code and click the green button on the github project page【Code】,【Download ZIP】, after downloading, unzip it
 
