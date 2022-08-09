@@ -3,11 +3,13 @@
 ![license](https://img.shields.io/badge/license-MIT-brightgreen)
 ![python_version](https://img.shields.io/badge/python-%3E%3D%203.10-brightgreen)
 ![coverage](https://img.shields.io/badge/coverage-100%25-brightgreen)
-[![](https://img.shields.io/badge/blog-@thiencntt)](https://thiencntt.com)
+[![](https://img.shields.io/badge/blog-@thiencntt.com-red)](https://thiencntt.com)
 ### A free and open source Alien Worlds bot
 ![](https://raw.githubusercontent.com/thiencntt/botawpython/main/doc/demo.png)
 ## Illustrate
 Alien Worlds official website: [https://alienworlds.io](https://alienworlds.io)
+
+Original source code: [https://github.com/encoderlee/OpenAlien](https://github.com/encoderlee/OpenAlien)
 
 You can get a free and open source FarmersWorld bot:
 [https://github.com/encoderlee/OpenFarmer](https://github.com/encoderlee/OpenFarmer)
@@ -18,15 +20,15 @@ This script can run multiple account in one computer
 
 # Usage
 
-1.To run from source code, install the Python environment first. It is recommended to install Python 3.9.13 version, because this is the version we have tested
+1. To run from source code, install the Python environment first. It is recommended to install Python 3.9.13 version, because this is the version we have tested
 
 download link：[https://www.python.org/ftp/python/3.9.13/python-3.9.13-amd64.exe](https://www.python.org/ftp/python/3.9.13/python-3.9.13-amd64.exe)
 
 Remember to check when installing “Add Python 3.9 to PATH”
 
-2.Download the source code and click the green button on the github project page【Code】,【Download ZIP】, after downloading, unzip it
+2. Download the source code and click the green button on the github project page【Code】,【Download ZIP】, after downloading, unzip it
 
-3.Double click to run【install_dependencies.bat】Install the dependency package, this step only needs to be done once per computer
+3. Double click to run【install_dependencies.bat】Install the dependency package, this step only needs to be done once per computer
 
 【Notice】Before installing the dependency package, please close other windows and downloading applications
 
