@@ -30,9 +30,7 @@ This script can run multiple account in one computer
 
 2. Download the source code and click the green button on the github project page【Code】,【Download ZIP】, after downloading, unzip it
 
-3. Double click to run【install_dependencies.bat】Install the dependency package, this step only needs to be done once per computer
-
-【Notice】Before installing the dependency package, please close other windows and downloading applications
+3. Double click to run【install_dependencies.bat】Install the dependency package, this step only needs to be done once per computer **【Notice】Before installing the dependency package, please close other windows and downloading applications**
 
 4. Open file 【user - sample.txt】to know what to fill in file【user.bat】
 
