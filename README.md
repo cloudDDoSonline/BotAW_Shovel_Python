@@ -18,6 +18,12 @@ This open source OpenAlien completely runs without using the Chrome browser.
 
 This script can run multiple account in one computer
 
+# My Developing
+- [x] Translate to English
+- [x] Set Console Title to show wallet in cmd window title
+- [ ] Add feature to set bag, set land
+- [ ] Add feature stop bot from hour to hour of day
+
 # Usage
 
 1. To run from source code, install the Python environment first. It is recommended to install Python 3.9.13 version, because this is the version we have tested
