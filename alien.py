@@ -117,7 +117,7 @@ class Alien:
         if self.trx_error_count >= interval.max_trx_error:
             self.log.info("Transactions keep going wrong [{0}] times, in order to avoid being blocked by the node and the script is stopped, please manually check the problem or replace the node".format(self.trx_error_count))
             raise StopException("Transactions keep going wrong")
-        self.log.info("Retry no.{0} in seconds: [{1}]".format(wait_seconds, retry_state.attempt_number))
+        self.log.info("Retry no.{1} in {0} seconds".format(wait_seconds, retry_state.attempt_number))
         return float(wait_seconds)
 
 
@@ -217,7 +217,7 @@ class Alien:
                 # print(r.text)     # r.content as str
                 raise StopException("token invalidation")
             else:
-                raise NodeException("wax server error: {0}".format
+                raise NodeException("Wax server error: {0}".format
                                     (resp.text), resp)
 
         resp = resp.json()
@@ -229,7 +229,7 @@ class Alien:
         self.log.info("Querying last mining information")
         resp = self.get_table_rows("miners")
         resp = resp["rows"][0]
-        self.log.info("Last mining information: {0}".format(resp))
+        # self.log.info("Last mining information: {0}".format(resp))
         last_mine_time = datetime.fromisoformat(resp["last_mine"])
         last_mine_time = last_mine_time.replace(tzinfo=timezone.utc)
         last_mine_time = last_mine_time.astimezone()

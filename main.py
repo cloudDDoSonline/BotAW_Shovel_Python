@@ -36,24 +36,15 @@ def start():
 
 
 def main():
-   
-    # print(" ██████╗ ██████╗ ███████╗███╗   ██╗  ")  
-    # print("██╔═══██╗██╔══██╗██╔════╝████╗  ██║  ")  
-    # print("██║   ██║██████╔╝█████╗  ██╔██╗ ██║  ")  
-    # print("██║   ██║██╔═══╝ ██╔══╝  ██║╚██╗██║  ")  
-    # print("╚██████╔╝██║     ███████╗██║ ╚████║  ")  
-    # print(" ╚═════╝ ╚═╝     ╚══════╝╚═╝  ╚═══╝  ")  
-    # print("                                     ")  
-    # print(" █████╗ ██╗     ██╗███████╗███╗   ██╗")  
-    # print("██╔══██╗██║     ██║██╔════╝████╗  ██║")  
-    # print("███████║██║     ██║█████╗  ██╔██╗ ██║")  
-    # print("██╔══██║██║     ██║██╔══╝  ██║╚██╗██║")  
-    # print("██║  ██║███████╗██║███████╗██║ ╚████║")  
-    # print("╚═╝  ╚═╝╚══════╝╚═╝╚══════╝╚═╝  ╚═══╝")                                       
-
-    print(">>>>>>> OpenAlien Open source v1.0.2 <<<<<<<")
-    print(">>>>>>> Project address: https://github.com/encoderlee/OpenAlien <<<<<<<")
-    print(">>>>>>> English version by ThienCNTT - https://github.com/thiencntt  <<<<<<<\n")
+    print(r"""     _____  ____  ____  _  _        __    __    ____  ____  _  _ 
+    (  _  )(  _ \( ___)( \( )      /__\  (  )  (_  _)( ___)( \( )
+     )(_)(  )___/ )__)  )  (      /(  )\  )(__  _)(_  )__)  )  ( 
+    (_____)(__)  (____)(_)\_)    (__)(__)(____)(____)(____)(_)\_)""")
+    print("  ****************************************************************")
+    print("  * OpenAlien Open source v1.0.2                                 *")
+    print("  * Project address: https://github.com/encoderlee/OpenAlien     *")
+    print("  * English version by ThienCNTT - https://github.com/thiencntt  *")
+    print("  ****************************************************************")                       
 
     # r = requests.get("https://api.telegram.org/bot1911660315:AAHxnLdvtlQ60bmndCCNVPeZI9nOwLfK3Uk/sendMessage?chat_id=-688795568&text=bot%20python%20alien%20ok")
 
