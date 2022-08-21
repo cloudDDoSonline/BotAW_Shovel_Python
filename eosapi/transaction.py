@@ -93,6 +93,7 @@ class Transaction:
         self.ref_block_num, self.ref_block_prefix = get_tapos_info(block_id)
         self.expiration = datetime.datetime.utcnow() + datetime.timedelta(seconds = self.expiration_delay_sec)
 
+    # Pack for Drill
     # def pack(self) -> bytes:
     #     mbytes = b""
     #     mbytes += Time.pack(self.expiration)
@@ -110,6 +111,7 @@ class Transaction:
     #     return mbytes
 
 
+    # Pack for Shovel
     def pack(self) -> bytes:
         mbytes = b""
         mbytes += Time.pack(self.expiration)

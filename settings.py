@@ -22,6 +22,8 @@ class UserParam:
     proxy_username: Optional[str] = None
     proxy_password: Optional[str] = None
 
+    telegram_id: str = None
+    note: str = None
     account: str = None
     token: str = None
     charge_time: int = None

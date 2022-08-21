@@ -20,7 +20,8 @@ This script can run multiple account in one computer
 
 # My Developing
 - [x] Translate to English
-- [x] Set Console Title to show wallet in cmd window title
+- [x] Set Console Title to show Wallet and Note in cmd window title
+- [x] Set up to notify error via Telegram (1. Create a group, 2. Find and add BotXamXi, 3. Copy ID of group and paste to bat file)
 - [ ] Add feature to set bag, set land
 - [ ] Add feature stop bot from hour to hour of day
 
@@ -60,6 +61,12 @@ proxy:
 proxy_username:
 proxy_password:
 
+# Telegram Group ID
+# 1. Create a group, 2. Find and add BotXamXi, 3. Copy ID of group and paste to bat file)
+# Note: Can be: No. or number, string that you want
+telegram_id:
+note:
+
 # Change the following three items to your account information
 # account is the account name of the wax cloud wallet
 # What is the token, first log in to the WAX cloud wallet manually in the chrome browser  https://wallet.wax.io/dashboard
@@ -70,6 +77,7 @@ proxy_password:
 
 
 # charge_time is the mining interval, in seconds, log in to the official website of alienworlds, open the tool page, you can see it, fill in according to the actual situation
+# https://play.alienworlds.io/mining
 
 account: gts3c.c.wam
 token: EHuyFHPcLpSNUJ4BLSUnPxxxxxxxxxxxx

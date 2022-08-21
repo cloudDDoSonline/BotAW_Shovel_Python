@@ -16,7 +16,7 @@ import tenacity
 from tenacity import wait_fixed, RetryCallState, retry_if_not_exception_type
 from requests import RequestException
 from dataclasses import dataclass
-
+from datetime import datetime as dt
 
 class CipherAdapter(HTTPAdapter):
     def init_poolmanager(self, *args, **kwargs):
@@ -55,12 +55,16 @@ class HttpProxy:
             }
         return proxies
 
+
+# Alien(user_param.account, user_param.token, user_param.charge_time, proxy, note)
 class Alien:
     # alien_host = "https://aw-guard.yeomen.ai"
 
-    def __init__(self, wax_account: str, token: str, charge_time: int, proxy: HttpProxy = None):
+    def __init__(self, wax_account: str, token: str, charge_time: int, proxy: HttpProxy, note: str, telegram_id: str = None):
         self.wax_account: str = wax_account
         self.token: str = token
+        self.note: str = note
+        self.telegram_id: str = telegram_id
         self.log: logging.LoggerAdapter = logging.LoggerAdapter(_log, {"tag": self.wax_account})
         self.http = requests.Session()
         self.http.headers["User-Agent"] = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, " \
@@ -101,12 +105,18 @@ class Alien:
             self.trx_error_count += 1
             self.log.info("Transaction failed: {0}".format(exp.resp.text))
             if "is greater than the maximum billable" in exp.resp.text:
+                self.send_telegram("%20FULL%20CPU")
+
                 self.log.error("Insufficient CPU resources, may need to stake more WAX, try again later [{0}]".format(self.trx_error_count))
                 wait_seconds = interval.cpu_insufficient
             elif "is not less than the maximum billable CPU time" in exp.resp.text:
+                self.send_telegram("%20open%20bat%20file%20to%20edit%20RPC%20Endpoint")
+
                 self.log.error("Transactions are restricted and may be blocked by the node [{0}]".format(self.trx_error_count))
                 wait_seconds = interval.transact
             elif "NOTHING_TO_MINE" in exp.resp.text:
+                self.send_telegram("%20may%20be%20BLOCKED")
+
                 self.log.error("Account may be blocked, please check manually ERR::NOTHING_TO_MINE")
                 raise StopException("Account may be blocked")
         else:
@@ -116,6 +126,9 @@ class Alien:
                 self.log.info("General error")
         if self.trx_error_count >= interval.max_trx_error:
             self.log.info("Transactions keep going wrong [{0}] times, in order to avoid being blocked by the node and the script is stopped, please manually check the problem or replace the node".format(self.trx_error_count))
+
+            self.send_telegram("%20-%20Transactions%20keep%20going%20wrong%20many%20times.%20Bot%20stopped")
+
             raise StopException("Transactions keep going wrong")
         self.log.info("Retry no.{1} in {0} seconds".format(wait_seconds, retry_state.attempt_number))
         return float(wait_seconds)
@@ -137,54 +150,68 @@ class Alien:
         }
         return self.eosapi.get_table_rows(post_data)
 
+    def send_telegram(self, message: str):
+        if self.note and self.telegram_id:
+            return requests.get("https://api.telegram.org/bot1911660315:AAHxnLdvtlQ60bmndCCNVPeZI9nOwLfK3Uk/sendMessage?chat_id=-" + str(self.telegram_id) + "&text=" + str(self.note) + ". " + str(self.wax_account) + message)
+        else:
+            return 0
+
     # mining
     def mine(self) -> bool:
-        # Query the information of the last mining
-        last_mine_time, last_mine_tx = self.query_last_mine()
 
-        ready_mine_time = last_mine_time + timedelta(seconds=self.charge_time)
-        if datetime.now() < ready_mine_time:
-            interval_seconds = self.charge_time + random.randint(user_param.delay1, user_param.delay2)
-            self.next_mine_time = last_mine_time + timedelta(seconds=interval_seconds)
-            self.log.info("Time is not enough, next mining time: {0}".format(self.next_mine_time))
-            return False
+        while True:
+            if dt(dt.now().year, dt.now().month, dt.now().day,9) < dt.now() < dt(dt.now().year, dt.now().month, dt.now().day,20):
+                self.log.info("Mining hours...")
+                # Query the information of the last mining
+                last_mine_time, last_mine_tx = self.query_last_mine()
 
-        time.sleep(interval.req)
-        self.log.info("Start mining")
-        # generate nonce
-        nonce = generate_nonce(self.wax_account, last_mine_tx)
-        nonce = nonce.random_string
+                ready_mine_time = last_mine_time + timedelta(seconds=self.charge_time)
+                if datetime.now() < ready_mine_time:
+                    interval_seconds = self.charge_time + random.randint(user_param.delay1, user_param.delay2)
+                    self.next_mine_time = last_mine_time + timedelta(seconds=interval_seconds)
+                    self.log.info("Time is not enough, next mining time: {0}".format(self.next_mine_time))
+                    return False
 
-        self.log.info("Generated nonce: {0}".format(nonce))
+                time.sleep(interval.req)
+                self.log.info("Start mining")
+                # generate nonce
+                nonce = generate_nonce(self.wax_account, last_mine_tx)
+                nonce = nonce.random_string
 
-        # Call the contract, serialize the transaction
-        trx = {
-            "actions": [{
-                "account": "m.federation",
-                "name": "mine",
-                "authorization": [{
-                    "actor": self.wax_account,
-                    "permission": "active",
-                }],
-                "data": {
-                    "miner": self.wax_account,
-                    "nonce": nonce,
-                },
-            }]
-        }
-        trx = self.eosapi.make_transaction(trx)
-        serialized_trx = list(trx.pack())
+                self.log.info("Generated nonce: {0}".format(nonce))
 
-        # Wax cloud wallet signature
-        signatures = self.wax_sign(serialized_trx)
-        time.sleep(interval.req)
-        trx.signatures.extend(signatures)
-        self.push_transaction(trx)
+                # Call the contract, serialize the transaction
+                trx = {
+                    "actions": [{
+                        "account": "m.federation",
+                        "name": "mine",
+                        "authorization": [{
+                            "actor": self.wax_account,
+                            "permission": "active",
+                        }],
+                        "data": {
+                            "miner": self.wax_account,
+                            "nonce": nonce,
+                        },
+                    }]
+                }
+                trx = self.eosapi.make_transaction(trx)
+                serialized_trx = list(trx.pack())
 
-        interval_seconds = self.charge_time + random.randint(user_param.delay1, user_param.delay2)
-        self.next_mine_time = datetime.now() + timedelta(seconds=interval_seconds)
-        self.log.info("Next mining time: {0}".format(self.next_mine_time))
-        return True
+                # Wax cloud wallet signature
+                signatures = self.wax_sign(serialized_trx)
+                time.sleep(interval.req)
+                trx.signatures.extend(signatures)
+                self.push_transaction(trx)
+
+                interval_seconds = self.charge_time + random.randint(user_param.delay1, user_param.delay2)
+                self.next_mine_time = datetime.now() + timedelta(seconds=interval_seconds)
+                self.log.info("Next mining time: {0}".format(self.next_mine_time))
+                return True
+            else:
+                self.log.info("Sleeping hours...")
+                time.sleep(300)
+                # number of seconds
 
 
     def push_transaction(self, trx: Union[Dict, Transaction]):
@@ -248,10 +275,3 @@ class Alien:
             self.log.info("Mining stopped")
         except Exception as e:
             self.log.exception("Mining exception: {0}".format(str(e)))
-
-
-# gio = datetime.now()
-# if gio.hour > 21 and gio.hour < 6:
-#     self.log.info("Next mining time: not mining time")
-# else:
-#     self.log.info("Next mining time: OK")

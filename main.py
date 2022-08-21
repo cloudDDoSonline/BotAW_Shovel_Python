@@ -22,14 +22,20 @@ def start():
     load_param(data)
 
     logger.init_loger(user_param.account)
-    ctypes.windll.kernel32.SetConsoleTitleW(user_param.account)
+
+    if user_param.note:
+        cmdtitle = user_param.note + ". " + user_param.account
+    else:
+        cmdtitle = user_param.account
+   
+    ctypes.windll.kernel32.SetConsoleTitleW(cmdtitle)
     proxy = None
     if user_param.proxy:
         proxy = HttpProxy(user_param.proxy, user_param.proxy_username, user_param.proxy_password)
 
     log.info("Loading configuration file: {0}".format(user_yml))
     log.info("=============Start mining=============")
-    alien = Alien(user_param.account, user_param.token, user_param.charge_time, proxy)
+    alien = Alien(user_param.account, user_param.token, user_param.charge_time, proxy, user_param.note, user_param.telegram_id)
     alien.run()
     log.info("=============Mining stopped=============")
 
