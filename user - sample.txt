@@ -19,6 +19,12 @@ proxy:
 proxy_username:
 proxy_password:
 
+# Telegram Group ID
+# 1. Create a group, 2. Find and add BotXamXi, 3. Copy ID of group and paste to bat file)
+# Note: Can be: No. or number, string that you want
+telegram_id:
+note:
+
 # Change the following three items to your account information
 # account is the account name of the wax cloud wallet
 # What is the token, first log in to the WAX cloud wallet manually in the chrome browser  https://wallet.wax.io/dashboard

@@ -6,6 +6,8 @@ delay2: 90
 proxy:
 proxy_username:
 proxy_password:
+telegram_id:
+note:
 account: xxxxx.wam
 token: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 charge_time: xxx

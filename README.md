@@ -22,8 +22,9 @@ This script can run multiple account in one computer
 - [x] Translate to English
 - [x] Set Console Title to show Wallet and Note in cmd window title
 - [x] Set up to notify error via Telegram (1. Create a group, 2. Find and add BotXamXi, 3. Copy ID of group and paste to bat file)
+- [x] Add feature stop bot from hour to hour of day
 - [ ] Add feature to set bag, set land
-- [ ] Add feature stop bot from hour to hour of day
+
 
 # Usage
 
